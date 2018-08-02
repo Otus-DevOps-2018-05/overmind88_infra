@@ -14,12 +14,3 @@ variable public_key_path {
 variable private_key_path {
   description = "Path to the private key used for ssh access"
 }
-
-variable disk_image {
-  description = "Disk image"
-}
-
-variable zone {
-  description = "Default zone"
-  default     = "europe-west1-b"
-}
