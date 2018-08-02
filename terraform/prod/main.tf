@@ -24,5 +24,5 @@ module "vpc" {
   source          = "../modules/vpc"
   public_key_path = "${var.public_key_path}"
   zone            = "${var.zone}"
-  source_ranges   = ["109.63.136.80/32"]
+  source_ranges   = ["0.0.0.0/0"]
 }
