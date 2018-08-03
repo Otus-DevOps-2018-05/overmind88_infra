@@ -8,7 +8,7 @@
         "tags": "reddit-database",
         "network": "default",
         "image_description": "Image contains mongodb prepared for reddit app"
-        },
+    },
     "builders": [
         {
             "type": "googlecompute",
@@ -28,9 +28,8 @@
     ],
     "provisioners": [
         {
-            "type": "shell",
-            "script": "scripts/install_mongodb.sh",
-            "execute_command": "sudo {{.Path}}"
+            "type": "ansible",
+            "playbook_file": "ansible/packer_db.yml"
         }
     ]
 }
