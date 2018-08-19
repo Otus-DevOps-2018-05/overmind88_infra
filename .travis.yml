@@ -35,6 +35,7 @@ script:
 
 branches:
   only:
+    - ansible-4
     - ansible-3
     - master
 
