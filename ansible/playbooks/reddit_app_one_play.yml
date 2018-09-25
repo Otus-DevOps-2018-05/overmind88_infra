@@ -21,7 +21,7 @@
         dest: /etc/systemd/system/puma.service
       tags: app
       notify: reload puma
-    
+
     - name: Add config for DB connection
       template:
         src: templates/db_config.j2
@@ -40,18 +40,18 @@
        version: monolith
       tags: deploy
       notify: reload puma
-    
+
     - name: Bundle install
       bundler:
         state: present
         chdir: /home/appuser/reddit
-      tags: deploy 
+      tags: deploy
 
   handlers:
   - name: restart mongod
     become: true
     service: name=mongod state=restarted
-    
+
   - name: reload puma
     become: true
-    systemd: name=puma state=restarted 
+    systemd: name=puma state=restarted

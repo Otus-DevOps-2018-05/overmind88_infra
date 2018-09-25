@@ -27,7 +27,7 @@ resource "google_compute_instance" "database" {
     private_key = "${file(var.private_key_path)}"
   }
 
-/*   provisioner "file" {
+  /*   provisioner "file" {
     source      = "${path.module}/files/mongod.conf"
     destination = "/tmp/mongod.conf"
   }

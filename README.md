@@ -1,9 +1,11 @@
+[![Build Status](https://travis-ci.com/Otus-DevOps-2018-05/overmind88_infra.svg?branch=ansible-3)](https://travis-ci.com/Otus-DevOps-2018-05/overmind88_infra)
+
 # overmind88_infra
 overmind88 Infra repository
 
 # ДЗ №3
 
-bastion_IP = 35.204.213.127  
+bastion_IP = 35.204.213.127
 someinternalhost_IP = 10.164.0.3
 
 Подключение к someinternalhost в одну строчку:
@@ -25,9 +27,9 @@ Host someinternalhost
 # ДЗ №4
 
 testapp_IP = 35.205.80.235
-testapp_port = 9292 
+testapp_port = 9292
 
-Команда для добавления правила файрволла: 
+Команда для добавления правила файрволла:
 `gcloud compute firewall-rules create puma-default-server --target-tags="puma-server" --source-ranges="0.0.0.0/0" --allow tcp:9292`
 
 Команда для запуска со startup-скриптом:
@@ -73,7 +75,7 @@ gcloud compute instances create reddit-app-2\
 - Второе задание - сделал провижнинг приложения, с передачей переменной DATABASE_URL через terraform template (включение/отключение провижнинга через переменную не делал)
 
 # ДЗ №8
-Что было сделано: 
+Что было сделано:
 - Выполнение базовых команд ansible с помощью разным модулей (shell, command, systems,service, git)
 - Написан playbook для клонирования git-репозитория. При наличии каталога назначения ansible не выкачивает репозиторий, при отсутствии - выкачивает
 - Сделан inventory.json и проверена его работоспособность
@@ -88,3 +90,12 @@ gcloud compute instances create reddit-app-2\
 - Packer теперь использует ansible
 - Сделаны новые образы через packer
 - Проверена работоспособность конфигурирования mongo и деплоя приложения через ansible
+
+# ДЗ №10
+Что было сделано:
+- Плейбуки разбиты по ролям
+- Описаны окружения stage и prod
+- Добавлено использовании роли nginx
+- Теперь приложение проксируется через nginx на 80 порт
+- Настроено динамическое инветори для обоих окружений
+- Сделано создание пользователей с указанием их credentials в зашифрованых с помощью ansible-vault файлах

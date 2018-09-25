@@ -1,9 +1,34 @@
 dist: trusty
 sudo: required
 language: bash
+
+env:
+  global:
+  - TF_VERSION="0.11.7"
+
 before_install:
-- curl https://raw.githubusercontent.com/express42/otus-homeworks/2018-05/run.sh |
-  bash
+  - curl https://raw.githubusercontent.com/express42/otus-homeworks/2018-05/run.sh |
+    bash
+  - wget https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip -O /tmp/terraform.zip
+  - sudo unzip -d /usr/local/bin/ /tmp/terraform.zip
+
+install:
+  - sudo pip install -r ansible/requirements.txt
+
+script:
+  - ansible --version
+  - ansible-lint --version
+  - terraform version
+  - packer version
+  - find . -type f -name '*.tf' -exec terraform fmt {} \;
+  - find . -type f -name '*.json' -exec packer validate -var-file=packer/variables.json.example {} \;
+  - find . -type f -name '*.yml' -exec ansible-lint {} \;
+
+branches:
+  only:
+    - ansible-3
+    - master
+
 notifications:
   slack:
     rooms:
